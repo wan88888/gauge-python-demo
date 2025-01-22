@@ -18,10 +18,9 @@ jobs:
       with:
         python-version: '3.11'
 
-    - name: Install Gauge from Binary
+    - name: Install Gauge
       run: |
-        curl -L https://github.com/getgauge/gauge/releases/latest/download/gauge-linux-x86_64.tar.gz -o gauge.tar.gz
-        sudo tar -xvzf gauge.tar.gz -C /usr/local/bin
+        curl -SsL https://downloads.gauge.org/stable | sh
         gauge --version    
     
     - name: Install dependencies
@@ -38,3 +37,11 @@ jobs:
       run: gauge run specs/
       env:
         PYTHONPATH: ${{ github.workspace }}
+
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: gauge-test-results
+        path: reports/
+        retention-days: 30
