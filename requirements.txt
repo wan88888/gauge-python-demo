@@ -1,0 +1,5 @@
+getgauge
+requests
+certifi
+selenium
+webdriver-manager
