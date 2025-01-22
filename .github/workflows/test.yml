@@ -22,8 +22,8 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y apt-transport-https
-        curl -SsL https://downloads.gauge.org/stable | sudo apt-key add -
-        echo "deb https://downloads.gauge.org/stable nightly main" | sudo tee /etc/apt/sources.list.d/gauge.list
+        curl -fsSL https://downloads.gauge.org/stable/gauge-repository.key | sudo gpg --dearmor -o /usr/share/keyrings/gauge-archive-keyring.gpg
+        echo "deb [signed-by=/usr/share/keyrings/gauge-archive-keyring.gpg] https://downloads.gauge.org/stable nightly main" | sudo tee /etc/apt/sources.list.d/gauge.list
         sudo apt-get update
         sudo apt-get install -y gauge
     
