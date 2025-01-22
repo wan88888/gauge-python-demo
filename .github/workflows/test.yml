@@ -17,15 +17,12 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
-    
-    - name: Install Gauge
+
+    - name: Install Gauge from Binary
       run: |
-        sudo apt-get update
-        sudo apt-get install -y apt-transport-https
-        curl -fsSL https://downloads.gauge.org/stable/gauge-repository.key | sudo gpg --dearmor -o /usr/share/keyrings/gauge-archive-keyring.gpg
-        echo "deb [signed-by=/usr/share/keyrings/gauge-archive-keyring.gpg] https://downloads.gauge.org/stable nightly main" | sudo tee /etc/apt/sources.list.d/gauge.list
-        sudo apt-get update
-        sudo apt-get install -y gauge
+        curl -L https://github.com/getgauge/gauge/releases/latest/download/gauge-linux-x86_64.tar.gz -o gauge.tar.gz
+        sudo tar -xvzf gauge.tar.gz -C /usr/local/bin
+        gauge --version    
     
     - name: Install dependencies
       run: |
