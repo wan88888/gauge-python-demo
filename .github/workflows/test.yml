@@ -20,8 +20,7 @@ jobs:
 
     - name: Install Gauge from Binary
       run: |
-        curl -L https://github.com/getgauge/gauge/releases/latest/download/gauge-linux-x86_64.tar.gz -o gauge.tar.gz
-        sudo tar -xvzf gauge.tar.gz -C /usr/local/bin
+        curl -SsL https://downloads.gauge.org/stable | sh
         gauge --version    
     
     - name: Install dependencies
