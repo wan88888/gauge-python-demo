@@ -21,6 +21,7 @@ jobs:
     - name: Install Gauge
       run: |
         curl -SsL https://downloads.gauge.org/stable | sh
+        curl -SsL https://downloads.gauge.org/stable | sh
         gauge --version    
     
     - name: Install dependencies
